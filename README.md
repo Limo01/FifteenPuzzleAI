@@ -1,6 +1,10 @@
 # FifteenPuzzleAI
 
-The aim of this project is to develop a *mobile application* using a *cross platform framework*. The application I decided to build is an implementation of the *Fifteen Puzzle Game*. I decided not only to develop the game, but also to add an Artificial Intelligence Agent, trained using *Reinforcement Learning*, that can help the player to perform the next move or to play instead of the user for a while. 
+The aim of this project is to develop a *mobile application* using a *cross platform framework*. The application I decided to build is an implementation of the *Fifteen Puzzle Game*. I decided not only to develop the game, but also to add an Artificial Intelligence Agent, trained using *Reinforcement Learning*, that can help the player to perform the next move or to play instead of the user for a while.
+
+## Reinforcement Learning Policy
+
+In  ```fifteenPuzzle_App/src/js``` there is a ```rl_policy.zip``` file that needs to be uncompressed before running the application in the *Web Browser*
 
 ## How to run - Web Browser
 
