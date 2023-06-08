@@ -1,0 +1,16 @@
+{
+  "appId": "com.fifteengame.www",
+  "appName": "FifteenPuzzleAI",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "showSpinner": true,
+      "launchAutoHide": false,
+      "spinnerColor": "#ffffff"
+    }
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

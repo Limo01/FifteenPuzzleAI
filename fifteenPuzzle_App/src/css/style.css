@@ -1,0 +1,60 @@
+#moves_counter_display {
+    text-align: center;
+    margin-top: 8vh;
+    margin-bottom: 6vh;
+}
+
+#moves_counter_display h2 {
+    font-size: medium;
+}
+
+#moves_counter {
+    font-size: xxx-large;
+}
+
+#game_board {
+    height: 60vw;
+    width: 60vw;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+    font-size: x-large;
+}
+
+#game_board td {
+    border: 1px solid black;
+    width: 25%;
+}
+
+#game_board .cell {
+    box-shadow: inset 0 0 0.25em 0em gray;
+    background: #fefefe;
+}
+
+#game_board .emptyCell {
+    background-image: none;
+    background-color: #fcfcfc;
+}
+
+#game_board_div {
+    margin-bottom: 6vh;
+}
+
+#control_buttons {
+    text-align: center;
+}
+
+#restart_game_button {
+    margin-right: 2vw;
+}
+
+#ai_action_button {
+    margin-left: 2vw;
+    visibility: hidden;
+}
+
+#ai_autoplay_toggle {
+    margin-top: 2vh;
+    visibility: hidden;
+}

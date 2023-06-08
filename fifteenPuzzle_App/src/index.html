@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+        <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+
+        <title>Fifteen Puzzle AI</title>
+        <link rel="stylesheet" href="./css/style.css" />
+        <script type="module" src="./js/index.js"></script>
+    </head>
+    
+    <body>
+        <ion-app>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-title id="app_title">Fifteen Puzzle AI</ion-title>
+                  </ion-toolbar>
+            </ion-header>    
+            
+            <ion-content class="ion-padding" id="content">  
+                <div id="moves_counter_display">
+                    <h2>Moves</h2>
+                    <span id="moves_counter"></span>
+                </div>
+
+                <div id="game_board_div">
+                    <table id="game_board">
+                        <tr>
+                            <td id="0"></td>
+                            <td id="1"></td>
+                            <td id="2"></td>
+                            <td id="3"></td>
+                        </tr>
+                        <tr>
+                            <td id="4"></td>
+                            <td id="5"></td>
+                            <td id="6"></td>
+                            <td id="7"></td>
+                        </tr>
+                        <tr>
+                            <td id="8"></td>
+                            <td id="9"></td>
+                            <td id="10"></td>
+                            <td id="11"></td>
+                        </tr>
+                        <tr>
+                            <td id="12"></td>
+                            <td id="13"></td>
+                            <td id="14"></td>
+                            <td id="15"></td> 
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="control_buttons">
+                    <div>
+                        <ion-button id="restart_game_button">Restart</ion-button>
+                        <ion-button id="ai_action_button">AI action</ion-button>
+                    </div>
+                    <div>
+                        <ion-toggle id="ai_autoplay_toggle" labelPlacement="start">AI autoplay</ion-toggle>
+                    </div>
+                </div>
+
+                <ion-toast id="victory_toast" duration="2000" message="Congrats! You won!"></ion-toast>
+                <ion-toast id="loading_ai_module_toast" duration="15000" message="Loading AI module..."></ion-toast>
+            </ion-content>
+        </ion-app>
+    </body>
+</html> 
