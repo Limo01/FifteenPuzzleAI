@@ -1,31 +1,29 @@
 import { Model } from "./model.js";
 
 export class View {
-    constructor() {
-        this.controller = null;
-    }
+    #controller = null;
 
     setController(controller) {
-        this.controller = controller;
+        this.#controller = controller;
 
         // Add event listeners
 
         for (let i = 0; i < 16; i++) {
             document.getElementById(i).addEventListener("click", (e) => {  
-                this.controller.doAction(parseInt(e.target.id));
+                this.#controller.doAction(parseInt(e.target.id));
             });
         }
 
         document.getElementById("restart_game_button").addEventListener("click", (e) => {
-            this.controller.restartGame();
+            this.#controller.restartGame();
         });
 
         document.getElementById("ai_action_button").addEventListener("click", (e) => {
-            this.controller.doAiAction();
+            this.#controller.doAiAction();
         });
 
         document.getElementById("ai_autoplay_toggle").addEventListener("ionChange", (e) => {
-            this.controller.setAiAutoplay(e.detail.checked);
+            this.#controller.setAiAutoplay(e.detail.checked);
         });
 
         document.getElementById("victory_toast").addEventListener("didDismiss", () => {
