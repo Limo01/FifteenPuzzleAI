@@ -1,3 +1,7 @@
+ion-tab > div {
+    height: 100%;
+}
+
 #moves_counter_display {
     text-align: center;
     margin-top: 8vh;
@@ -57,4 +61,26 @@
 #ai_autoplay_toggle {
     margin-top: 2vh;
     visibility: hidden;
+}
+
+.stats_label > h2 {
+    margin-bottom: 1vh;
+}
+
+.stats_label > div {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+canvas {
+    margin-top: 2vh;
+}
+
+ion-fab-list > ion-button {
+    text-transform: none;
+    margin-left: 3vw;
 }

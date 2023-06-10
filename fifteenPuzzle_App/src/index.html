@@ -16,56 +16,120 @@
                 <ion-toolbar>
                     <ion-title id="app_title">Fifteen Puzzle AI</ion-title>
                   </ion-toolbar>
-            </ion-header>    
-            
-            <ion-content class="ion-padding" id="content">  
-                <div id="moves_counter_display">
-                    <h2>Moves</h2>
-                    <span id="moves_counter"></span>
-                </div>
+            </ion-header>
+            <ion-content>
+                <ion-tabs>
+                    <ion-tab tab="play">
+                        <div id="play-page">
+                            <ion-content class="ion-padding">  
+                                <div id="moves_counter_display">
+                                    <h2>Moves</h2>
+                                    <span id="moves_counter"></span>
+                                </div>
+                
+                                <div id="game_board_div">
+                                    <table id="game_board">
+                                        <tr>
+                                            <td id="0"></td>
+                                            <td id="1"></td>
+                                            <td id="2"></td>
+                                            <td id="3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="4"></td>
+                                            <td id="5"></td>
+                                            <td id="6"></td>
+                                            <td id="7"></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="8"></td>
+                                            <td id="9"></td>
+                                            <td id="10"></td>
+                                            <td id="11"></td>
+                                        </tr>
+                                        <tr>
+                                            <td id="12"></td>
+                                            <td id="13"></td>
+                                            <td id="14"></td>
+                                            <td id="15"></td> 
+                                        </tr>
+                                    </table>
+                                </div>
+                
+                                <div id="control_buttons">
+                                    <div>
+                                        <ion-button id="restart_game_button">Restart</ion-button>
+                                        <ion-button id="ai_action_button">AI action</ion-button>
+                                    </div>
+                                    <div>
+                                        <ion-toggle id="ai_autoplay_toggle" labelPlacement="start">AI autoplay</ion-toggle>
+                                    </div>
+                                </div>
+                
+                                <ion-toast id="victory_toast" duration="2000" message="Congrats! You won!"></ion-toast>
+                                <ion-toast id="loading_ai_module_toast" duration="15000" message="Loading AI module..."></ion-toast>
+                            </ion-content>
+                        </div>
+                    </ion-tab>
+                    <ion-tab tab="stats">
+                        <div id="stats-page">
+                            <ion-content class="ion-padding">
+                                <ion-item>
+                                    <ion-label class="stats_label">
+                                        <h2>Games Statistics</h2>
+                                        
+                                        <div id="normal_statistics">
+                                            <h3>Last 10 games statistics</h3>
+                                            <canvas id="normal_statistics_chart"></canvas>
+                                        </div>
 
-                <div id="game_board_div">
-                    <table id="game_board">
-                        <tr>
-                            <td id="0"></td>
-                            <td id="1"></td>
-                            <td id="2"></td>
-                            <td id="3"></td>
-                        </tr>
-                        <tr>
-                            <td id="4"></td>
-                            <td id="5"></td>
-                            <td id="6"></td>
-                            <td id="7"></td>
-                        </tr>
-                        <tr>
-                            <td id="8"></td>
-                            <td id="9"></td>
-                            <td id="10"></td>
-                            <td id="11"></td>
-                        </tr>
-                        <tr>
-                            <td id="12"></td>
-                            <td id="13"></td>
-                            <td id="14"></td>
-                            <td id="15"></td> 
-                        </tr>
-                    </table>
-                </div>
+                                        <p>Total games played: <span id="games_played_span" class="bold"></span></p>
+                                        <p>Average number of moves: <span id="average_moves_span" class="bold"></span></p>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item>
+                                    <ion-label class="stats_label">
+                                        <h2>AI Games Statistics</h2>
+                                        
+                                        <div id="ai_statistics">
+                                            <h3>Last 10 games statistics</h3>
+                                            <canvas id="ai_statistics_chart"></canvas>
+                                        </div>
 
-                <div id="control_buttons">
-                    <div>
-                        <ion-button id="restart_game_button">Restart</ion-button>
-                        <ion-button id="ai_action_button">AI action</ion-button>
-                    </div>
-                    <div>
-                        <ion-toggle id="ai_autoplay_toggle" labelPlacement="start">AI autoplay</ion-toggle>
-                    </div>
-                </div>
+                                        <p>Total games played: <span id="ai_games_played_span" class="bold"></span></p>
+                                        <p>Average number of moves: <span id="ai_average_moves_span" class="bold"></span></p>
+                                    </ion-label>
+                                </ion-item>
 
-                <ion-toast id="victory_toast" duration="2000" message="Congrats! You won!"></ion-toast>
-                <ion-toast id="loading_ai_module_toast" duration="15000" message="Loading AI module..."></ion-toast>
+                                <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+                                    <ion-fab-button>
+                                      <ion-icon name="chevron-forward-circle"></ion-icon>
+                                    </ion-fab-button>
+                                    <ion-fab-list side="end">
+                                      <ion-button id="clear_stats_button">
+                                        Clear stats
+                                      </ion-button>
+                                      <ion-button id="clear_ai_stats_button">
+                                        Clear AI stats
+                                      </ion-button>
+                                    </ion-fab-list>
+                                </ion-fab>
+                            </ion-content>
+                        </div>
+                    </ion-tab>
+    
+                    <ion-tab-bar slot="top">
+                        <ion-tab-button tab="play">
+                            <ion-icon name="game-controller-outline"></ion-icon>
+                            Play
+                        </ion-tab-button>
+                        <ion-tab-button tab="stats">
+                            <ion-icon name="stats-chart-outline"></ion-icon>
+                            Stats
+                        </ion-tab-button>
+                    </ion-tab-bar>
+                </ion-tabs>
             </ion-content>
         </ion-app>
     </body>
-</html> 
+</html>

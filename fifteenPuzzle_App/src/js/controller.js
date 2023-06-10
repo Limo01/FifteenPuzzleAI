@@ -7,31 +7,37 @@ export class Controller {
         this.#model = model;
     }
 
-    setView(view) {
+    async setView(view) {
         this.#view = view;
 
         this.#view.showBoard(this.#model.getBoard());
         this.#view.showMovesCounter(this.#model.getMovesCounter());
+
+        this.#view.updateStatistics(await this.#model.getStatistics());
     }
 
-    doAction(action) {
+    async doAction(action) {
         this.#model.doAction(action);
             
         this.#view.showBoard(this.#model.getBoard());
         this.#view.showMovesCounter(this.#model.getMovesCounter());
         
-        if (this.#model.isGameFinished())
+        if (this.#model.isGameFinished()) {
             this.#view.showVictory();
+            this.#view.updateStatistics(await this.#model.getStatistics());
+        }
     }
 
-    doAiAction() {
+    async doAiAction() {
         this.#model.doAiAction();
 
         this.#view.showBoard(this.#model.getBoard());
         this.#view.showMovesCounter(this.#model.getMovesCounter());
         
-        if (this.#model.isGameFinished())
+        if (this.#model.isGameFinished()) {
             this.#view.showVictory();
+            this.#view.updateStatistics(await this.#model.getStatistics());
+        }
     }
 
     setAiAutoplay(mode) {
@@ -61,5 +67,17 @@ export class Controller {
         
         this.setAiAutoplay(false);
         this.#view.setAiAutoplayToggleToFalse();
+    }
+
+    async clearNormalStatistics() {
+        this.#model.clearNormalStatistics();
+
+        this.#view.updateStatistics(await this.#model.getStatistics());
+    }
+
+    async clearAiStatistics() {
+        this.#model.clearAiStatistics();
+
+        this.#view.updateStatistics(await this.#model.getStatistics());
     }
 }
