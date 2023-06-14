@@ -28,7 +28,7 @@ window.onload = function() {
 
     setTimeout(() => {
         view.showAiModuleLoading();
-    }, 500);
+    }, 1000);
     
     loadPolicy(model, view);
 }

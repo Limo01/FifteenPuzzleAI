@@ -17,13 +17,79 @@
                     <ion-title id="app_title">Fifteen Puzzle AI</ion-title>
                   </ion-toolbar>
             </ion-header>
-            <ion-content>
+            
+            <ion-content scroll-y="false">
                 <ion-tabs>
                     <ion-tab tab="play">
                         <div id="play-page">
-                            <ion-content class="ion-padding">  
+                            <ion-content class="ion-padding" scroll-y="false">  
+                                <ion-fab slot="fixed" vertical="top" horizontal="end">
+                                    <ion-fab-button id="info_button" size="small">
+                                        <ion-icon name="help-outline"></ion-icon>
+                                    </ion-fab-button>
+                                </ion-fab>
+
+                                <ion-modal id="info_modal">
+                                    <ion-header>
+                                        <ion-toolbar>
+                                            <ion-title>Game rules</ion-title>
+                                            <ion-buttons slot="end">
+                                                <ion-button id="close_info_modal_button">Close</ion-button>
+                                            </ion-buttons>
+                                        </ion-toolbar>
+                                    </ion-header>
+                                    
+                                    <ion-content class="ion-padding" scroll-y="false">
+                                        <h1>The Fifteen Puzzle Game</h1>
+                                        <p>
+                                            The Fifteen Puzzle is a sliding puzzle having 15 square tiles numbered from 1 to 15 in a frame that is 4 tile positions high 
+                                            and 4 positions wide (for a total of 16 positions), leaving one unoccupied position.
+                                            The goal of the game is to reorder the board to reach this goal state:
+                                        </p>
+                                        
+                                        <div id="complete_board_div">
+                                            <table id="complete_game_board">
+                                                <tr>
+                                                    <td class="cell">1</td>
+                                                    <td class="cell">2</td>
+                                                    <td class="cell">3</td>
+                                                    <td class="cell">4</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="cell">5</td>
+                                                    <td class="cell">6</td>
+                                                    <td class="cell">7</td>
+                                                    <td class="cell">8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="cell">9</td>
+                                                    <td class="cell">10</td>
+                                                    <td class="cell">11</td>
+                                                    <td class="cell">12</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="cell">13</td>
+                                                    <td class="cell">14</td>
+                                                    <td class="cell">15</td>
+                                                    <td class="emptyCell"></td> 
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        
+                                        <p>
+                                            To make a move you have to click on one of the surrounding tiles of the unoccupied position.
+                                        </p>
+                                        
+                                        <h1>AI functionalities</h1>
+                                        <p>
+                                            If you get stuck or if you just want to see the AI play this game, you can use the "AI Action" button to let the app make the next 
+                                            move or you can use the "AI autoplay" toggle to let the AI play the game for a while. 
+                                        </p>
+                                    </ion-content>
+                                </ion-modal>
+
                                 <div id="moves_counter_display">
-                                    <h2>Moves</h2>
+                                    <h1>Moves</h1>
                                     <span id="moves_counter"></span>
                                 </div>
                 
@@ -73,7 +139,7 @@
                     </ion-tab>
                     <ion-tab tab="stats">
                         <div id="stats-page">
-                            <ion-content class="ion-padding">
+                            <ion-content class="ion-padding" scroll-y="false">
                                 <ion-item>
                                     <ion-label class="stats_label">
                                         <h2>Games Statistics</h2>
@@ -85,6 +151,7 @@
 
                                         <p>Total games played: <span id="games_played_span" class="bold"></span></p>
                                         <p>Average number of moves: <span id="average_moves_span" class="bold"></span></p>
+                                        <p>Record: <span id="record_span" class="bold"></span></p>
                                     </ion-label>
                                 </ion-item>
                                 <ion-item>
@@ -98,19 +165,20 @@
 
                                         <p>Total games played: <span id="ai_games_played_span" class="bold"></span></p>
                                         <p>Average number of moves: <span id="ai_average_moves_span" class="bold"></span></p>
+                                        <p>Record: <span id="ai_record_span" class="bold"></span></p>
                                     </ion-label>
                                 </ion-item>
 
-                                <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+                                <ion-fab slot="fixed" vertical="bottom" horizontal="end">
                                     <ion-fab-button>
-                                      <ion-icon name="chevron-forward-circle"></ion-icon>
+                                      <ion-icon name="chevron-back"></ion-icon>
                                     </ion-fab-button>
-                                    <ion-fab-list side="end">
-                                      <ion-button id="clear_stats_button">
-                                        Clear stats
-                                      </ion-button>
+                                    <ion-fab-list side="start">
                                       <ion-button id="clear_ai_stats_button">
-                                        Clear AI stats
+                                            Clear AI stats
+                                      </ion-button>
+                                      <ion-button id="clear_stats_button">
+                                            Clear stats
                                       </ion-button>
                                     </ion-fab-list>
                                 </ion-fab>
@@ -125,7 +193,7 @@
                         </ion-tab-button>
                         <ion-tab-button tab="stats">
                             <ion-icon name="stats-chart-outline"></ion-icon>
-                            Stats
+                            Statistics
                         </ion-tab-button>
                     </ion-tab-bar>
                 </ion-tabs>

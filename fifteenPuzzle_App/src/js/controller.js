@@ -17,7 +17,7 @@ export class Controller {
     }
 
     async doAction(action) {
-        this.#model.doAction(action);
+        await this.#model.doAction(action);
             
         this.#view.showBoard(this.#model.getBoard());
         this.#view.showMovesCounter(this.#model.getMovesCounter());
@@ -29,7 +29,7 @@ export class Controller {
     }
 
     async doAiAction() {
-        this.#model.doAiAction();
+        await this.#model.doAiAction();
 
         this.#view.showBoard(this.#model.getBoard());
         this.#view.showMovesCounter(this.#model.getMovesCounter());
@@ -46,7 +46,6 @@ export class Controller {
                 if (this.#model.isGameFinished()) {
                     this.setAiAutoplay(false);
                     this.#view.setAiAutoplayToggleToFalse();
-                    this.#view.showVictory();
                 }
                 else {
                     this.doAiAction();
@@ -70,13 +69,13 @@ export class Controller {
     }
 
     async clearNormalStatistics() {
-        this.#model.clearNormalStatistics();
+        await this.#model.clearNormalStatistics();
 
         this.#view.updateStatistics(await this.#model.getStatistics());
     }
 
     async clearAiStatistics() {
-        this.#model.clearAiStatistics();
+        await this.#model.clearAiStatistics();
 
         this.#view.updateStatistics(await this.#model.getStatistics());
     }

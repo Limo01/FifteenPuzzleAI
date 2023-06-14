@@ -9,13 +9,19 @@ export class View {
     setController(controller) {
         this.#controller = controller;
 
-        // Add event listeners
-
         for (let i = 0; i < 16; i++) {
             document.getElementById(i).addEventListener("click", (e) => {  
                 this.#controller.doAction(parseInt(e.target.id));
             });
         }
+
+        document.getElementById("info_button").addEventListener("click", () => {
+            document.getElementById("info_modal").isOpen = true;
+        });
+
+        document.getElementById("close_info_modal_button").addEventListener("click", () => {
+            document.getElementById("info_modal").isOpen = false;
+        });
 
         document.getElementById("restart_game_button").addEventListener("click", (e) => {
             this.#controller.restartGame();
@@ -81,6 +87,7 @@ export class View {
     updateStatistics(stats) {
         document.getElementById("games_played_span").innerHTML = stats["gamesPlayed"];
         document.getElementById("average_moves_span").innerHTML = stats["averageMoves"];
+        document.getElementById("record_span").innerHTML = stats["record"];
 
         if (stats["gamesMoves"].length > 0) {
             this.#showNormalStatisticsChart(stats["gamesMoves"]);
@@ -92,6 +99,7 @@ export class View {
 
         document.getElementById("ai_games_played_span").innerHTML = stats["aiGamesPlayed"];
         document.getElementById("ai_average_moves_span").innerHTML = stats["aiAverageMoves"];
+        document.getElementById("ai_record_span").innerHTML = stats["aiRecord"];
 
         if (stats["aiGamesMoves"].length > 0) {
             this.#showAiStatisticsChart(stats["aiGamesMoves"]);

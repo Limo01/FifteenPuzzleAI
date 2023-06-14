@@ -2,13 +2,45 @@ ion-tab > div {
     height: 100%;
 }
 
+#close_info_modal_button {
+    font-size: 15px;
+}
+
+#info_button {
+    --box-shadow: none;
+    height: 30px;
+    width: 30px;
+}
+
+#info_button ion-icon {
+    font-size: 18px;
+}
+
+#info_modal ion-content {
+    --padding-top: 0px;
+}
+
+#info_modal h1 {
+    font-size: 20px;
+}
+
+#info_modal p {
+    text-align: justify;
+    font-size: 15px;
+}
+
+#complete_board_div {
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+}
+
 #moves_counter_display {
     text-align: center;
-    margin-top: 8vh;
+    margin-top: 5vh;
     margin-bottom: 6vh;
 }
 
-#moves_counter_display h2 {
+#moves_counter_display h1 {
     font-size: medium;
 }
 
@@ -16,7 +48,7 @@ ion-tab > div {
     font-size: xxx-large;
 }
 
-#game_board {
+#game_board, #complete_game_board {
     height: 60vw;
     width: 60vw;
     border: 1px solid black;
@@ -26,17 +58,17 @@ ion-tab > div {
     font-size: x-large;
 }
 
-#game_board td {
+#game_board td, #complete_game_board td {
     border: 1px solid black;
     width: 25%;
 }
 
-#game_board .cell {
+#game_board .cell, #complete_game_board .cell {
     box-shadow: inset 0 0 0.25em 0em gray;
     background: #fefefe;
 }
 
-#game_board .emptyCell {
+#game_board .emptyCell, #complete_game_board .emptyCell {
     background-image: none;
     background-color: #fcfcfc;
 }
@@ -63,13 +95,17 @@ ion-tab > div {
     visibility: hidden;
 }
 
+#stats-page > ion-content {
+    --padding-top: 5px;
+}
+
 .stats_label > h2 {
     margin-bottom: 1vh;
 }
 
 .stats_label > div {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 .bold{
@@ -81,6 +117,9 @@ canvas {
 }
 
 ion-fab-list > ion-button {
+    margin-right: 3vw;
+}
+
+ion-button {
     text-transform: none;
-    margin-left: 3vw;
 }
