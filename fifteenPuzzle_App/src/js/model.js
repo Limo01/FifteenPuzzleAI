@@ -7,19 +7,19 @@ export class Model {
     #emptyCellIndex;
     #rowsSolved;
     #movesCounter;
-    #activatedAI;
+    #activatedAi;
     #policy = null;
-    #stats_db = null;
+    #statsDB = null;
 
     constructor() {
         this.#board = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, Model.emptyCellValue];
         this.#emptyCellIndex = 15;
         this.#rowsSolved = 4;
         this.#movesCounter = 0;
-        this.activatedAI = false;
-        this.#stats_db = new Storage();
+        this.activatedAi = false;
+        this.#statsDB = new Storage();
         
-        this.#stats_db.create();
+        this.#statsDB.create();
 
         this.#generateRandomBoard();
     }
@@ -133,43 +133,43 @@ export class Model {
             this.#movesCounter++;
 
             if (this.isGameFinished()) {
-                if (this.#activatedAI) {
-                    let aiGamesPlayed = await this.#stats_db.get("aiGamesPlayed");
-                    await this.#stats_db.set("aiGamesPlayed", (aiGamesPlayed != null ? aiGamesPlayed : 0) + 1);
+                if (this.#activatedAi) {
+                    let aiGamesPlayed = await this.#statsDB.get("aiGamesPlayed");
+                    await this.#statsDB.set("aiGamesPlayed", (aiGamesPlayed != null ? aiGamesPlayed : 0) + 1);
 
-                    let aiAverageMoves =  await this.#stats_db.get("aiAverageMoves");
-                    await this.#stats_db.set("aiAverageMoves", (aiAverageMoves != null ? ((aiAverageMoves * aiGamesPlayed + this.getMovesCounter()) / (aiGamesPlayed + 1)) : this.getMovesCounter()));
+                    let aiAverageMoves =  await this.#statsDB.get("aiAverageMoves");
+                    await this.#statsDB.set("aiAverageMoves", (aiAverageMoves != null ? ((aiAverageMoves * aiGamesPlayed + this.getMovesCounter()) / (aiGamesPlayed + 1)) : this.getMovesCounter()));
 
-                    let aiRecord = await this.#stats_db.get("aiRecord");
-                    await this.#stats_db.set("aiRecord", ((aiRecord == null || this.getMovesCounter() < aiRecord) ? this.getMovesCounter() : aiRecord));
+                    let aiRecord = await this.#statsDB.get("aiRecord");
+                    await this.#statsDB.set("aiRecord", ((aiRecord == null || this.getMovesCounter() < aiRecord) ? this.getMovesCounter() : aiRecord));
 
-                    let aiGamesMoves = await this.#stats_db.get("aiGamesMoves");
+                    let aiGamesMoves = await this.#statsDB.get("aiGamesMoves");
                     aiGamesMoves = (aiGamesMoves != null ? JSON.parse(aiGamesMoves) : []);
                     aiGamesMoves.push(this.getMovesCounter());
 
                     if (aiGamesMoves.length > 10)
                         aiGamesMoves.shift();
 
-                    await this.#stats_db.set("aiGamesMoves", JSON.stringify(aiGamesMoves));
+                    await this.#statsDB.set("aiGamesMoves", JSON.stringify(aiGamesMoves));
                 }
                 else {
-                    let gamesPlayed = await this.#stats_db.get("gamesPlayed");
-                    await this.#stats_db.set("gamesPlayed", (gamesPlayed != null ? gamesPlayed : 0) + 1);
+                    let gamesPlayed = await this.#statsDB.get("gamesPlayed");
+                    await this.#statsDB.set("gamesPlayed", (gamesPlayed != null ? gamesPlayed : 0) + 1);
 
-                    let averageMoves =  await this.#stats_db.get("averageMoves");
-                    await this.#stats_db.set("averageMoves", (averageMoves != null ? ((averageMoves * gamesPlayed + this.getMovesCounter()) / (gamesPlayed + 1)) : this.getMovesCounter()));
+                    let averageMoves =  await this.#statsDB.get("averageMoves");
+                    await this.#statsDB.set("averageMoves", (averageMoves != null ? ((averageMoves * gamesPlayed + this.getMovesCounter()) / (gamesPlayed + 1)) : this.getMovesCounter()));
 
-                    let record = await this.#stats_db.get("record");
-                    await this.#stats_db.set("record", ((record == null || this.getMovesCounter() < record) ? this.getMovesCounter() : record));
+                    let record = await this.#statsDB.get("record");
+                    await this.#statsDB.set("record", ((record == null || this.getMovesCounter() < record) ? this.getMovesCounter() : record));
 
-                    let gamesMoves = await this.#stats_db.get("gamesMoves");
+                    let gamesMoves = await this.#statsDB.get("gamesMoves");
                     gamesMoves = (gamesMoves != null ? JSON.parse(gamesMoves) : []);
                     gamesMoves.push(this.getMovesCounter());
 
                     if (gamesMoves.length > 10)
                         gamesMoves.shift();
 
-                    await this.#stats_db.set("gamesMoves", JSON.stringify(gamesMoves));                
+                    await this.#statsDB.set("gamesMoves", JSON.stringify(gamesMoves));                
                 }  
             }
         }
@@ -179,7 +179,7 @@ export class Model {
         if (this.#policy != null && !this.isGameFinished()) {
             let possibleActions = this.getPossibleActions();
             let bestAction = possibleActions[0];
-            this.#activatedAI = true;
+            this.#activatedAi = true;
 
             for (let i = 1; i < possibleActions.length; i++) {
                 if (this.#policy.get(JSON.stringify([this.#getCurrentStateHash(), possibleActions[i]])) > this.#policy.get(JSON.stringify([this.#getCurrentStateHash(), bestAction])))
@@ -193,7 +193,7 @@ export class Model {
     restartGame() {
         this.#movesCounter = 0;
         this.#generateRandomBoard();
-        this.#activatedAI = false;
+        this.#activatedAi = false;
     }
 
     isGameFinished() {
@@ -201,15 +201,15 @@ export class Model {
     }
 
     async getStatistics() {
-        let gamesPlayed = await this.#stats_db.get("gamesPlayed");        
-        let averageMoves = await this.#stats_db.get("averageMoves");
-        let record = await (this.#stats_db.get("record"));
-        let gamesMoves = await this.#stats_db.get("gamesMoves");
+        let gamesPlayed = await this.#statsDB.get("gamesPlayed");        
+        let averageMoves = await this.#statsDB.get("averageMoves");
+        let record = await (this.#statsDB.get("record"));
+        let gamesMoves = await this.#statsDB.get("gamesMoves");
 
-        let aiGamesPlayed = await this.#stats_db.get("aiGamesPlayed");
-        let aiAverageMoves = await this.#stats_db.get("aiAverageMoves");
-        let aiRecord = await (this.#stats_db.get("aiRecord"));
-        let aiGamesMoves = await this.#stats_db.get("aiGamesMoves");
+        let aiGamesPlayed = await this.#statsDB.get("aiGamesPlayed");
+        let aiAverageMoves = await this.#statsDB.get("aiAverageMoves");
+        let aiRecord = await (this.#statsDB.get("aiRecord"));
+        let aiGamesMoves = await this.#statsDB.get("aiGamesMoves");
 
         return {
             "gamesPlayed" : (gamesPlayed != null ? gamesPlayed : 0), 
@@ -224,16 +224,16 @@ export class Model {
     }
 
     async clearNormalStatistics() {
-        await this.#stats_db.set("gamesPlayed", 0);
-        await this.#stats_db.set("averageMoves", 0);
-        await (this.#stats_db.set("record", null));
-        await this.#stats_db.set("gamesMoves", JSON.stringify([]));
+        await this.#statsDB.set("gamesPlayed", 0);
+        await this.#statsDB.set("averageMoves", 0);
+        await (this.#statsDB.set("record", null));
+        await this.#statsDB.set("gamesMoves", JSON.stringify([]));
     }
 
     async clearAiStatistics() {
-        await this.#stats_db.set("aiGamesPlayed", 0);
-        await this.#stats_db.set("aiAverageMoves", 0);
-        await (this.#stats_db.set("aiRecord", null));
-        await this.#stats_db.set("aiGamesMoves", JSON.stringify([]));
+        await this.#statsDB.set("aiGamesPlayed", 0);
+        await this.#statsDB.set("aiAverageMoves", 0);
+        await (this.#statsDB.set("aiRecord", null));
+        await this.#statsDB.set("aiGamesMoves", JSON.stringify([]));
     }
 }
