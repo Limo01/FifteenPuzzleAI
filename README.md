@@ -29,7 +29,8 @@ When *Android Studio* is opened you only need to build the project in *Android S
 <img src="img/class_diagram.png">
 
 ## Screenshoots
-
-<img src="img/splashscreen/splashscreen_portrait.png" width="25%" style="margin-right:5%">
-<img src="img/app/app-portrait.png" width="25%" style="margin-right:5%">
-<img src="img/statistics/statistics-portrait.png" width="25%">
+<div>
+  <img src="img/splashscreen/splashscreen-portrait.png" width="25%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="img/app/app-portrait.png" width="25%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="img/statistics/statistics-portrait.png" width="25%">
+</div>
